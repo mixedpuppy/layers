@@ -1,0 +1,66 @@
+[
+  {
+    "namespace": "manifest",
+    "types": [
+      {
+        "$extend": "Permission",
+        "choices": [{
+          "type": "string",
+          "enum": [ "overlay" ]
+        }]
+      }
+    ]
+  },
+  {
+    "namespace": "overlay",
+    "description": "Create and manage a semi-transparent overlay on top of the browser.",
+    "permissions": ["overlay"],
+    "functions": [
+      {
+        "name": "open",
+        "type": "function",
+        "description": "Opens the html document in an overlay.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "details",
+            "type": "object",
+            "properties": {
+              "windowId": {
+                "type": "integer",
+                "optional": true,
+                "minimum": 0,
+                "description": "sets the overlay on a specific window."
+              },
+              "url": {
+                "type": "string",
+                "description": "The html file to show in the overlay."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "close",
+        "type": "function",
+        "description": "Closes the overlay and unloads the document.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "details",
+            "type": "object",
+            "optional": true,
+            "properties": {
+              "windowId": {
+                "type": "integer",
+                "optional": true,
+                "minimum": 0,
+                "description": "Closes the overlay on a specific window."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
